@@ -33,6 +33,7 @@ This extension works with binaries `sops / age / ...` installed via [aquaproj/aq
 * `sops.defaults.ageKeyFile`: Default path used to find AGE key file. Overwrites the `$SOPS_AGE_KEY_FILE` environment variable (default: uses from environment variable `$SOPS_AGE_KEY_FILE`)
 * `sops.creationEnabled`: enable/disable this extension to try encrypt files included in .sops.yaml path_regex when is not encrypted yet (default: false)
 * `sops.ignoreMac`: enable/disable MAC verification
+* `sops.macOnlyEncrypted`: compute MAC only over values which end up encrypted
 
 ## Config file
 > Named `.sopsrc` in project root by default and is in YAML format.

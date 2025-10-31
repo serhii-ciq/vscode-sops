@@ -42,6 +42,7 @@ enum ConfigName {
 	defaultAgeKeyFile = 'defaults.ageKeyFile',
 	configPath = 'configPath', // Run Control path
 	ignoreMac = "ignoreMac",
+	macOnlyEncrypted = "macOnlyEncrypted",
 }
 interface IRunControl {
 	awsProfile?: string;
@@ -518,6 +519,7 @@ async function getSopsGeneralOptions(fileUriToEncryptOrDecrypt: vscode.Uri) {
 	const defaultGcpCredentialsPath: string | undefined = vscode.workspace.getConfiguration(CONFIG_BASE_SECTION).get(ConfigName.defaultGcpCredentialsPath);
 	const defaultAgeKeyFile: string | undefined = vscode.workspace.getConfiguration(CONFIG_BASE_SECTION).get(ConfigName.defaultAgeKeyFile);
 	const ignoreMac: boolean | undefined = vscode.workspace.getConfiguration(CONFIG_BASE_SECTION).get(ConfigName.ignoreMac);
+	const macOnlyEncrypted: boolean | undefined = vscode.workspace.getConfiguration(CONFIG_BASE_SECTION).get(ConfigName.macOnlyEncrypted);
 	debug('config', { defaultAwsProfile, defaultGcpCredentialsPath, defaultAgeKeyFile });
 	const rc = await getRunControl();
 	const awsProfile = rc.awsProfile ?? defaultAwsProfile;
@@ -535,6 +537,10 @@ async function getSopsGeneralOptions(fileUriToEncryptOrDecrypt: vscode.Uri) {
 	if (ignoreMac) {
 		sopsGeneralArgs.push('--ignore-mac');
 	}
+
+	if (macOnlyEncrypted) {
+		sopsGeneralArgs.push('--mac-only-encrypted');
+	}	
 
 	if (gcpCredentialsPath) {
 		if (!path.isAbsolute(gcpCredentialsPath) && vscode.workspace.workspaceFolders) {

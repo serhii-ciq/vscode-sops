@@ -87,6 +87,12 @@
 					"scope": "resource",
 					"default": false,
 					"description": "enable/disable MAC verification (default: false)"
+				},
+				"sops.defaults.macOnlyEncrypted": {
+					"type": "boolean",
+					"scope": "resource",
+					"default": false,
+					"description": "compute MAC only over values which end up encrypted (default: false)"
 				}
 			}
 		},

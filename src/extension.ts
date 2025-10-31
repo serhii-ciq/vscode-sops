@@ -540,7 +540,7 @@ async function getSopsGeneralOptions(fileUriToEncryptOrDecrypt: vscode.Uri) {
 
 	if (macOnlyEncrypted) {
 		sopsGeneralArgs.push('--mac-only-encrypted');
-	}	
+	}
 
 	if (gcpCredentialsPath) {
 		if (!path.isAbsolute(gcpCredentialsPath) && vscode.workspace.workspaceFolders) {

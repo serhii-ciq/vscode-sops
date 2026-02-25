@@ -294,7 +294,14 @@ async function openFile(uri: vscode.Uri) {
 }
 
 async function closeAndDeleteFile(uri: vscode.Uri) {
-	// TODO close file first
+	// Close all editor tabs showing this file before deleting
+	for (const tabGroup of vscode.window.tabGroups.all) {
+		for (const tab of tabGroup.tabs) {
+			if (tab.input instanceof vscode.TabInputText && tab.input.uri.path === uri.path) {
+				await vscode.window.tabGroups.close(tab, true);
+			}
+		}
+	}
 	if (await fileExists(uri)) {
 		await vscode.workspace.fs.delete(uri);
 	}

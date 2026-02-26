@@ -96,6 +96,8 @@ const isEnabled = (context: vscode.ExtensionContext) => {
 };
 let spawnOptions: child_process.SpawnSyncOptions = {
 	cwd: process.env.HOME,
+	maxBuffer: 20 * 1024 * 1024, // 20 MB
+	timeout: 2_000, // 2 seconds — kill SOPS if it hangs (e.g. invalid file in editor mode)
 };
 
 function getToggleBarText(toggleToEncDec: 'encrypted' | 'decrypted' | 'enc/dec' = 'enc/dec') {
@@ -337,6 +339,7 @@ async function getDecryptedFileContent(uri: vscode.Uri, fileFormat: IFileFormat)
 		await fs.writeFile(tmpEncryptedFilePath, encryptedContent, { mode: 0o600 });
 		debug('Decrypting', uri.path, encryptedContent);
 		const { sopsGeneralArgs, sopsGeneralEnvVars } = await getSopsGeneralOptions(uri);
+		const decryptStart = Date.now();
 		const decryptProcess = child_process.spawnSync(
 			getSopsBinPath(),
 			[
@@ -356,6 +359,7 @@ async function getDecryptedFileContent(uri: vscode.Uri, fileFormat: IFileFormat)
 				},
 			},
 		);
+		debug('SOPS decrypt took', Date.now() - decryptStart, 'ms');
 		if (decryptProcess.error) {
 			throw decryptProcess.error;
 		}
@@ -406,17 +410,20 @@ async function getEncryptedFileContent(uri: vscode.Uri, originalEncryptedUri: vs
 			VSCODE_SOPS_DECRYPTED_FILE_PATH: tmpDecryptedFilePath,
 		};
 		debug('SOPS command', sopsBin, cmds.join(' '), JSON.stringify(envs, undefined, 2));
+		const encryptStart = Date.now();
 		const encryptProcess = child_process.spawnSync(
 			sopsBin,
 			cmds,
 			{
 				...spawnOptions,
+				stdio: ['ignore', 'pipe', 'pipe'],
 				env: {
 					...process.env,
 					...envs
 				},
 			},
 		);
+		debug('SOPS encrypt took', Date.now() - encryptStart, 'ms');
 		if (encryptProcess.error) {
 			throw encryptProcess.error;
 		}

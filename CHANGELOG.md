@@ -4,6 +4,17 @@ All notable changes to the "vscode-sops" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.9.5]
+### Added
+- GitHub Actions CI/CD pipeline: automatic publish to VS Code Marketplace and Open VSX on merge to master.
+
+### Changed
+- Removed custom `maxBuffer` override from SOPS spawn options (reverted to Node.js default).
+
+## [0.9.4]
+### Changed
+- Internal improvements and dependency updates.
+
 ## [0.9.3]
 ### Fixed
 - Missing `--mac-only-encrypted` option in `sops` command.

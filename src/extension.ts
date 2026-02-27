@@ -96,7 +96,6 @@ const isEnabled = (context: vscode.ExtensionContext) => {
 };
 let spawnOptions: child_process.SpawnSyncOptions = {
 	cwd: process.env.HOME,
-	maxBuffer: 20 * 1024 * 1024, // 20 MB
 	timeout: 2_000, // 2 seconds — kill SOPS if it hangs (e.g. invalid file in editor mode)
 };
 

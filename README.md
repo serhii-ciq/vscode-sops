@@ -1,10 +1,10 @@
 # VSCode SOPS extension
 
 ## Info
-The homepage of VSCode extension is located on https://github.com/signageos/vscode-sops
+The homepage of VSCode extension is located on https://github.com/s2504s/vscode-sops
 
-Extension for VSCode is available on market place https://marketplace.visualstudio.com/items?itemName=signageos.signageos-vscode-sops
-Additionally, it's available on Open VSX market place https://open-vsx.org/extension/signageos/signageos-vscode-sops
+Extension for VSCode is available on market place https://marketplace.visualstudio.com/items?itemName=s2504s.s2504s-vscode-sops
+Additionally, it's available on Open VSX market place https://open-vsx.org/extension/s2504s/s2504s-vscode-sops
 
 ## Features
 
@@ -44,7 +44,7 @@ ageKeyFile: /home/user/age.txt
 ```
 
 ## Beta releases
-The new features are published immediately into different extension package https://marketplace.visualstudio.com/items?itemName=signageos.signageos-vscode-sops-beta
+The new features are published immediately into different extension package https://marketplace.visualstudio.com/items?itemName=s2504s.s2504s-vscode-sops-beta
 
 The beta extension package is installed automatically and is disabled by default.
 
@@ -52,7 +52,7 @@ If you'd like to try new features, just enable configuration `"sops.beta": true`
 
 You can switch beta configuration globally easily using commands `sops.enable_beta`/`sops.disable_beta`.
 
-I recommend to have enabled beta release to test everything as soon as possible. If something went wrong in beta release, just easily rollback to `"sops.beta" false` and report an issue here: https://github.com/signageos/vscode-sops/issues
+I recommend to have enabled beta release to test everything as soon as possible. If something went wrong in beta release, just easily rollback to `"sops.beta" false` and report an issue here: https://github.com/s2504s/vscode-sops/issues
 
 > The reason is that vscode doesn't support beta releases built-in. See and vote for https://github.com/microsoft/vscode/issues/15756
 
@@ -68,11 +68,11 @@ git config --global diff.sopsdiffer.textconv "sops -d --config /dev/null"
 to see the git diff in decrypted format.
 
 ## Known Issues
-See https://github.com/signageos/vscode-sops/issues
+See https://github.com/s2504s/vscode-sops/issues
 
 ## Release Notes
 
-See https://github.com/signageos/vscode-sops/blob/master/CHANGELOG.md file.
+See https://github.com/s2504s/vscode-sops/blob/master/CHANGELOG.md file.
 
 -----------------------------------------------------------------------------------------------------------
 

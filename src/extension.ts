@@ -11,7 +11,7 @@ import * as minimatch from 'minimatch';
 import * as Debug from 'debug';
 import { TextEncoder, TextDecoder } from 'text-encoding';
 
-const DEBUG_NAMESPACE = '@signageos/vscode-sops';
+const DEBUG_NAMESPACE = '@s2504s/vscode-sops';
 function enableDebug() {
 	const outputChannel = vscode.window.createOutputChannel(DEBUG_NAMESPACE);
 	(Debug as any).log = (...args: any[]) => outputChannel.appendLine(args.join(', '));
@@ -70,7 +70,7 @@ const getSopsBinPath = () => {
 };
 
 // TODO wait til vscode provide proper way to get current extension name
-const getCurrentExtensionName = (context: vscode.ExtensionContext): string => (context.globalState as any)._id ?? 'signageos.signageos-vscode-sops';
+const getCurrentExtensionName = (context: vscode.ExtensionContext): string => (context.globalState as any)._id ?? 's2504s.s2504s-vscode-sops';
 
 const isCurrentlyBetaInstance = (context: vscode.ExtensionContext) => {
 	const extensionName = getCurrentExtensionName(context);

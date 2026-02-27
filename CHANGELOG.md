@@ -4,6 +4,10 @@ All notable changes to the "vscode-sops" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.9.6]
+### Added
+- `AGENTS.md` with repository conventions for AI coding agents.
+
 ## [0.9.5]
 ### Added
 - GitHub Actions CI/CD pipeline: automatic publish to VS Code Marketplace and Open VSX on merge to master.
